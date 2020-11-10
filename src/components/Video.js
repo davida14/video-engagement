@@ -48,18 +48,21 @@ const Video = ({ id }) => {
       data.append("video", blob);
       data.append("id", id);
 
-      const res = await axios.post(
-        "http://127.0.0.1:8000/api/video-upload/",
-        data,
-        {
+      const res = await axios
+        .post("http://127.0.0.1:8000/api/video-upload/", data, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
-        }
-      ); //pass id
-      console.log(res);
-
-      setRecordedChunks([]);
+        })
+        .then((response) => {
+          console.log(response);
+          window.location.reload();
+          setRecordedChunks([]);
+          alert("Video Saved!");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }, [recordedChunks]);
 
