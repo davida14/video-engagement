@@ -3,7 +3,7 @@
    }
    .myForm {
      display: flex;
-     background-color: beige;
+     /* background-color: beige; */
      border-radius: 3px;
      padding: 1.8em;
    }
