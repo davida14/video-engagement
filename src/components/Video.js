@@ -3,15 +3,19 @@ import Webcam from "react-webcam";
 //import React, { useState, useEffect,useRef,useCallback } from "react";
 import axios from "axios";
 
-const WebcamStreamCapture = () => {
+const Video = ({ id }) => {
+    console.log(id);
+
     const webcamRef = React.useRef(null);
     const mediaRecorderRef = React.useRef(null);
     const [capturing, setCapturing] = React.useState(false);
     const [recordedChunks, setRecordedChunks] = React.useState([]);
-    const [stopRecording,setStopRecording] = React.useState(true);
-  
+    const [recroding,setRecording] = React.useState(false);
+
+
     const handleStartCaptureClick = React.useCallback(() => {
       setCapturing(true);
+      setRecording(true);
       mediaRecorderRef.current = new MediaRecorder(webcamRef.current.stream, {
         mimeType: "video/webm"
       });
@@ -44,6 +48,7 @@ const WebcamStreamCapture = () => {
   
               let data = new FormData();
               data.append("video",blob);
+              data.append("id",id);
   
             const res = await axios.post("http://127.0.0.1:8000/api/video-upload/",data,{
                 headers: {
@@ -58,10 +63,12 @@ const WebcamStreamCapture = () => {
   
 
       React.useEffect(() => {
+        console.log("test useffect");
         setTimeout(() => {
-            setStopRecording(false);
+          console.log("test 22");
+          setRecording(false);
         },3000);
-      },[capturing]);
+      },[recroding]);
 
     return (
       <>
@@ -71,7 +78,7 @@ const WebcamStreamCapture = () => {
       {/* recording */}
         <Webcam audio={false} ref={webcamRef} />
         {capturing ? (
-           stopRecording ? "Recording (must be minimum 3 secs)...." :  <button  onClick={handleStopCaptureClick}>Stop Capture</button>
+           recroding ? "Recording (must be minimum 3 secs)...." :  <button  onClick={handleStopCaptureClick}>Stop Capture</button>
         ) : (
           <button onClick={handleStartCaptureClick}>Start Capture</button>
         )}
@@ -83,4 +90,4 @@ const WebcamStreamCapture = () => {
   };
 
 
-  export default WebcamStreamCapture;
+  export default Video;

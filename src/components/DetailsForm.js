@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, useParams } from "react-router-dom";
 import axios from "axios";
 import "./DetailsForm.css";
+import Video from './Video';
+import VideoLanding from './VideoLanding';
 
 const DetailsForm = () => {
   let { id } = useParams();
@@ -21,7 +23,8 @@ const DetailsForm = () => {
     <div className="myForm">
   <div class="message">
     <label for="msg">Video</label>
-    <textarea id="msg"></textarea>
+    {/* <textarea id="msg"></textarea> */}
+    {items[0]?.video ? <VideoLanding url={items[0]?.video}/>  : <Video id={id}/> }
   </div>
 
 
