@@ -4,8 +4,10 @@ import axios from "axios";
 import "./DetailsForm.css";
 import Video from "./Video";
 import VideoLanding from "./VideoLanding";
+import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
 
 const DetailsForm = () => {
+  let history = useHistory();
   let { id } = useParams();
   const [items, setItems] = useState([]);
 
@@ -17,6 +19,19 @@ const DetailsForm = () => {
 
     fetchItems();
   }, [id]);
+
+  const handleDelete = () => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/items/${id}`)
+      .then((response) => {
+        console.log(response);
+        alert("successfully Deleted");
+        history.goBack();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   console.log(items);
   return (
@@ -54,7 +69,7 @@ const DetailsForm = () => {
             readonly="readonly"
             type="text"
             id="watched"
-            value={items[0]?.status==1?"completed" :"not completed"}
+            value={items[0]?.status == 1 ? "completed" : "not completed"}
           />
 
           <label>Watched?</label>
@@ -62,7 +77,7 @@ const DetailsForm = () => {
             readonly="readonly"
             type="text"
             id="watched"
-            value={items[0]?.watched==1?"watched" :"not watched"}
+            value={items[0]?.watched == 1 ? "watched" : "not watched"}
           />
 
           <label>Video Landing Page</label>
@@ -73,7 +88,9 @@ const DetailsForm = () => {
             value={items[0]?.video}
           />
 
-          <button type="submit">Delete</button>
+          <button onClick={handleDelete} type="submit">
+            Delete
+          </button>
         </div>
       </div>
     </div>
