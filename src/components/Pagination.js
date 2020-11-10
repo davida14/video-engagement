@@ -8,6 +8,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   }
 
   return (
+    <>
     <nav>
       <ul className='pagination'>
         {pageNumbers.map(number => (
@@ -19,6 +20,7 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
         ))}
       </ul>
     </nav>
+    </>
   );
 };
 

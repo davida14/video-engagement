@@ -4,14 +4,9 @@ import Pagination from "./components/Pagination";
 import axios from "axios";
 import "./Dashboard.css";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useHistory,
-    useLocation,
-    useParams
-  } from "react-router-dom";
+  BrowserRouter as Router,
+  Link,
+} from "react-router-dom";
 
 function Dashboard() {
   const [items, setItems] = useState([]);
@@ -38,15 +33,14 @@ function Dashboard() {
   // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-
   return (
     <div className="container mt-5">
       <h1 className="text-primary mb-3">Bonjoro To Do Lists</h1>
 
       <div className="add">
-      <Link to="/add">
-      <button>Add Todo</button>
-      </Link>
+        <Link to="/add">
+          <button>Add Todo</button>
+        </Link>
       </div>
 
       <Items items={currentItems} loading={loading} />

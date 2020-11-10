@@ -24,6 +24,7 @@ const Items = ({ items, loading }) => {
   console.log(items);
 
   return (
+    <>
     <List>
       {items.map((item) => (
         <div key={item.id}>
@@ -38,6 +39,7 @@ const Items = ({ items, loading }) => {
         </div>
       ))}
     </List>
+    </>
   );
 };
 
