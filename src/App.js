@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 import DetailsForm from './components/DetailsForm';
 import AddLists from './components/AddLists';
 import Video from './components/Video';
+import LandingPage from "./components/LandingPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/details/:id" component={DetailsForm} />
         <Route path="/add" component={AddLists} />
         <Route path="/video" component={Video} />
+        <Route path="/watch/:id" component={LandingPage} />
         <Route component={Error} />
     </Switch>
 </main>

@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, useParams } from "react-router-dom";
 import axios from "axios";
 import "./DetailsForm.css";
 import Video from "./Video";
 import VideoLanding from "./VideoLanding";
-import { BrowserRouter, Route, Switch, useHistory } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  useHistory,
+  Link,
+  useParams,
+} from "react-router-dom";
 
 const DetailsForm = () => {
   let history = useHistory();
@@ -80,12 +86,14 @@ const DetailsForm = () => {
             value={items[0]?.watched == 1 ? "watched" : "not watched"}
           />
 
-          <label>Video Landing Page</label>
+          <Link to={`/watch/${id}`}>
+            <label>Video Landing Page</label>
+          </Link>
           <input
-            readonly="readonly"
             type="text"
             id="landing_page"
-            value={items[0]?.video}
+            //value={items[0]?.video}
+            value={`${window.location.origin}/watch/${id}`}
           />
 
           <button onClick={handleDelete} type="submit">
