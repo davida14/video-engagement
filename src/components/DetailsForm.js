@@ -42,8 +42,8 @@ const DetailsForm = () => {
   console.log(items);
   return (
     <div className="myForm">
-      <div class="message">
-        <label for="msg">Video</label>
+      <div className="details">
+        <label>Video</label>
         {/* <textarea id="msg"></textarea> */}
         {items[0]?.video ? (
           <VideoLanding url={items[0]?.video} />
@@ -53,10 +53,10 @@ const DetailsForm = () => {
       </div>
 
       <div>
-        <div class="contact">
+        <div className="contact">
           <label>Created Time</label>
           <input
-            readonly="readonly"
+            readOnly="readonly"
             type="text"
             id="time"
             value={items[0]?.created_at}
@@ -64,7 +64,7 @@ const DetailsForm = () => {
 
           <label>Recipient Name</label>
           <input
-            readonly="readonly"
+            readOnly="readonly"
             type="text"
             id="recipient"
             value={items[0]?.recipient}
@@ -72,7 +72,7 @@ const DetailsForm = () => {
 
           <label>Status?</label>
           <input
-            readonly="readonly"
+            readOnly="readonly"
             type="text"
             id="watched"
             value={items[0]?.status == 1 ? "completed" : "not completed"}
@@ -80,7 +80,7 @@ const DetailsForm = () => {
 
           <label>Watched?</label>
           <input
-            readonly="readonly"
+            readOnly="readonly"
             type="text"
             id="watched"
             value={items[0]?.watched == 1 ? "watched" : "not watched"}

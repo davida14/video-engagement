@@ -26,10 +26,23 @@ const LandingPage = () => {
     fetchItems();
   }, [id]);
 
-  console.log(items[0]?.video);
+  useEffect(() => {
+    if (!items[0]?.video) {
+      let data = new FormData();
+      data.append("watched", 1);
+      const updateWatchStatus = async () => {
+        const res = await axios.put(
+          `http://127.0.0.1:8000/api/items/${id}`,
+          data
+        );
+      };
+      console.log("update video");
+      updateWatchStatus();
+    }
+  }, []);
 
   return (
-    <div class="videoDiv">
+    <div className="videoDiv">
       {/* <video src={`http://127.0.0.1:8000/${url}`} controls></video>  */}
       <video src={`http://127.0.0.1:8000/${items[0]?.video}`} controls></video>
     </div>
