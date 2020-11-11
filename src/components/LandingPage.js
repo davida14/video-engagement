@@ -28,12 +28,9 @@ const LandingPage = () => {
 
   useEffect(() => {
     if (!items[0]?.video) {
-      let data = new FormData();
-      data.append("watched", 1);
       const updateWatchStatus = async () => {
         const res = await axios.put(
-          `http://127.0.0.1:8000/api/items/${id}`,
-          data
+          `http://127.0.0.1:8000/api/items/${id}?watched=1`
         );
       };
       console.log("update video");
